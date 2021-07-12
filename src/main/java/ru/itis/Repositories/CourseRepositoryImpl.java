@@ -36,7 +36,8 @@ public class CourseRepositoryImpl implements CourseRepository {
     private static final String SQL_UPDATE_COURSE_BY_DATE_END = "update course set date_end = ? where id = ?";
 
     //language=SQL
-    private static final String SQL_SELECT_ALL_COURSES_WITH_STUDENTS = "select *,  s.id as student_id from course c left join student s on c.id  = s.course_id order by c.id";
+    private static final String SQL_SELECT_ALL_COURSES_WITH_STUDENTS = "select *, c.id as course_id, s.id as student_id " +
+            "from student_courses sc left join course c on sc.course_id = c.id  left join student s on sc.student_id = s.id order by sc.course_id";
 
     private  JdbcTemplate jdbcTemplate;
 
